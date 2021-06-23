@@ -59,9 +59,28 @@
     return self;
 }
 
+- (void)prepareForNib:(UIImage *)image height:(CGSize)size
+{
+    _image = image;
+    
+    UIImageView *imgView = [self viewWithTag:-6240];
+    if (imgView == nil || [imgView isEqual:[NSNull class]]) {
+        self.contentMode = UIViewContentModeScaleAspectFill;
+        _shadowHeight = 100.0f;
+        _shadowHidden = YES;
+        _shadowAlpha = 0.2f;
+        _shadowIsDirty = YES;
+        [self setUpViews];
+    }
+    
+    CGRect frame = (CGRect){0.0f, 0.0f, size.width, size.height};
+    [imgView setFrame: frame];
+}
+
 - (void)setUpViews
 {
     self.imageView = [[UIImageView alloc] initWithImage:_image];
+    [self.imageView setTag:-6240];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
     self.imageView.backgroundColor = [UIColor blackColor];
