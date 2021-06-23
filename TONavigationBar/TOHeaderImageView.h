@@ -53,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithImage:(UIImage *)image height:(CGFloat)height;
 - (void)prepareForNib:(UIImage *)image height:(CGSize)size;
+- (BOOL)readyToImageView;
 
 @end
 

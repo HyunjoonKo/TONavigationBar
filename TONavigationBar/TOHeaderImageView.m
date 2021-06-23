@@ -77,6 +77,15 @@
     [imgView setFrame: frame];
 }
 
+- (BOOL)readyToImageView
+{
+    UIImageView *imgView = [self viewWithTag:-6240];
+    if (imgView == nil || [imgView isEqual:[NSNull class]]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (void)setUpViews
 {
     self.imageView = [[UIImageView alloc] initWithImage:_image];
