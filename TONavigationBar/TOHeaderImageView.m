@@ -59,11 +59,17 @@
     return self;
 }
 
+- (nullable UIImageView *)headerImageView
+{
+    UIImageView *imgView = [self viewWithTag:-6240];
+    return imgView;
+}
+
 - (void)prepareForNib:(UIImage *)image height:(CGSize)size
 {
     _image = image;
     
-    UIImageView *imgView = [self viewWithTag:-6240];
+    UIImageView *imgView = [self headerImageView];
     if (imgView == nil || [imgView isEqual:[NSNull class]]) {
         self.contentMode = UIViewContentModeScaleAspectFill;
         _shadowHeight = 100.0f;
@@ -73,14 +79,13 @@
         [self setUpViews];
     }
     
-    CGRect frame = (CGRect){0.0f, 0.0f, size.width, size.height};
+    CGRect frame = (CGRect){0.0f, (self.frame.size.height - size.height), size.width, size.height};
     [imgView setFrame: frame];
 }
 
 - (BOOL)readyToImageView
 {
-    UIImageView *imgView = [self viewWithTag:-6240];
-    if (imgView == nil || [imgView isEqual:[NSNull class]]) {
+    if ([self headerImageView] == nil || [[self headerImageView] isEqual:[NSNull class]]) {
         return NO;
     }
     return YES;
